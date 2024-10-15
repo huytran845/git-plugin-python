@@ -14,6 +14,15 @@ def walk_dir(walk_dir):
 
 # Using the subprocess library, to create sub processes that run the git commands with the given repository.
 def run_git_commands(repository):
+	subprocess.run(["git", "add", "."], cwd=repository)
+
+	# Check for changes before committing
+	result = subprocess.run(["git", "status", "--porcelain"], cwd=repository, capture_output=True, text=True)
+	if result.stdout:
+		commit_message = input("Enter commit message: ")
+		subprocess.run(["git", "commit", "-m", commit_message], cwd=repository)
+	else:
+		print("No changes to commit.")
 	subprocess.run(["git", "pull"], cwd=repository)
 	subprocess.run(["git", "push"], cwd=repository)
 	subprocess.run(["git", "push", "--tags"], cwd=repository)
