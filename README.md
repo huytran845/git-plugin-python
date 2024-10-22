@@ -11,11 +11,9 @@ A simple git plugin utilizing python to automate the git pull, and git push comm
 
 #### Running the project:
 1. Add and commit files for your git repo.
-2. <style type="text/css">
-    ol { list-style-type: lower-alpha; }
-    a) Run the git-plugin.py file with "python3 git-plugin.py --dir your-repo-path"
+2. 
+    a) Run the git-plugin.py file with "python3 git-plugin.py --dir your-repo-path" </br>
     b) (IF you followed the setup for Linux) Run the script in a command line with "git plugin --dir your-repo-path"
-</style>
 
 #### Reference:
 https://joshburns-xyz.vercel.app/posts/build-your-own-git-plugin
