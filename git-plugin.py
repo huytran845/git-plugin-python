@@ -2,6 +2,7 @@
 import click
 import os
 import subprocess
+from prompt_toolkit import PromptSession
 
 # The walk_dir function goes through the provided directory and determeins if there is a .git directory, returning either true of false.
 def walk_dir(walk_dir):
@@ -14,12 +15,14 @@ def walk_dir(walk_dir):
 
 # Using the subprocess library, to create sub processes that run the git commands with the given repository.
 def run_git_commands(repository):
+	session = PromptSession()
+
 	subprocess.run(["git", "add", "."], cwd=repository)
 
 	# Check for changes before committing
 	result = subprocess.run(["git", "status", "--porcelain"], cwd=repository, capture_output=True, text=True)
 	if result.stdout:
-		commit_message = input("Enter commit message: ")
+		commit_message = session.prompt("Enter commit message: ")
 		subprocess.run(["git", "commit", "-m", commit_message], cwd=repository)
 	else:
 		print("No changes to commit.")
